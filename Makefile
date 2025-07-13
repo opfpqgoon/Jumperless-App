@@ -1,4 +1,4 @@
-.PHONY: clean
+.PHONY: clean env
 BUILDDST=./build
 ENV=$(BUILDDST)/.env
 REQ_ENV=$(BUILDDST)/.constraints_env
@@ -11,8 +11,8 @@ REQ_PIP=$(REQ_ENV)/bin/pip
 # and ensures reproducible builds
 # requirements.txt should only list versions if absolutely necessary
 # constraints.txt is auto-generated and pins exact versions
-REQUIREMENTS=requirements.txt
-CONSTRAINTS=constraints.txt
+REQUIREMENTS=Packager/packagerRequirements.txt
+CONSTRAINTS=Packager/constraints.txt
 
 # Target to create and set up the virtual environment
 # Dependencies: requirements.txt and constraints.txt
@@ -37,7 +37,7 @@ $(CONSTRAINTS): $(REQUIREMENTS)
 
 # Target to build the application
 # Dependencies: env and constraints
-build: env
+package: env
 	$(PYTHON) Packager/JumperlessAppPackager.py
 
 # Target to clean up build artifacts
