@@ -1,0 +1,3 @@
+-r requirements.txt
+-r requirements_packager.txt
+-r requirements_test.txt
